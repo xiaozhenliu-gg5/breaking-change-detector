@@ -1,4 +1,8 @@
-Proto Breaking Change Detector This repository will contain the source code of a breaking change detector in proto level, which takes API proto definition files and detects the unintended breaking changes in minor versions updates.
+# Proto Breaking Change Detector
+
+## Background
+
+This repository contains the source code of a breaking change detector in proto level, which takes API proto definition files and detects the unintended breaking changes in minor versions updates.
 
 Contributing Contributions to this library are always welcome and highly encouraged.
 

@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='tutorial.v1beta1',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x13protos/update.proto\x12\x10tutorial.v1beta1\"\xd5\x02\n\x06Person\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\t\x12\x15\n\remail_address\x18\x03 \x01(\t\x12\x0f\n\x07married\x18\x04 \x01(\x08\x12\x16\n\x0chome_address\x18\t \x01(\tH\x00\x12\x19\n\x0f\x63ompany_address\x18\n \x01(\tH\x00\x12\x34\n\x06phones\x18\x06 \x01(\x0b\x32$.tutorial.v1beta1.Person.PhoneNumber\x1aU\n\x0bPhoneNumber\x12\x0e\n\x06number\x18\x01 \x01(\t\x12\x36\n\x04type\x18\x02 \x01(\x0e\x32(.tutorial.v1beta1.Person.PhoneTypeUpdate\">\n\x0fPhoneTypeUpdate\x12\n\n\x06MOBILE\x10\x00\x12\x08\n\x04HOME\x10\x01\x12\x0b\n\x07\x43OMPANY\x10\x02\x12\x08\n\x04WORK\x10\x04\x42\t\n\x07\x61\x64\x64ress\"F\n\x0b\x41\x64\x64ressBook\x12(\n\x06people\x18\x01 \x03(\x0b\x32\x18.tutorial.v1beta1.Person\x12\r\n\x05state\x18\x02 \x01(\x08\x62\x06proto3')
+  serialized_pb=_b('\n\x13protos/update.proto\x12\x10tutorial.v1beta1\"\xd5\x02\n\x06Person\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\t\x12\x15\n\remail_address\x18\x03 \x01(\t\x12\x34\n\x06phones\x18\x06 \x01(\x0b\x32$.tutorial.v1beta1.Person.PhoneNumber\x12\x16\n\x0chome_address\x18\x07 \x01(\tH\x00\x12\x19\n\x0f\x63ompany_address\x18\x08 \x01(\tH\x00\x12\x0f\n\x07married\x18\t \x01(\x08\x1aU\n\x0bPhoneNumber\x12\x0e\n\x06number\x18\x01 \x01(\t\x12\x36\n\x04type\x18\x03 \x01(\x0e\x32(.tutorial.v1beta1.Person.PhoneTypeUpdate\">\n\x0fPhoneTypeUpdate\x12\n\n\x06MOBILE\x10\x00\x12\x08\n\x04HOME\x10\x01\x12\x0b\n\x07\x43OMPANY\x10\x02\x12\x08\n\x04WORK\x10\x04\x42\t\n\x07\x61\x64\x64ress\"K\n\x0b\x41\x64\x64ressBook\x12(\n\x06people\x18\x01 \x03(\x0b\x32\x18.tutorial.v1beta1.Person\x12\x12\n\ndeprecated\x18\x02 \x01(\x08\x62\x06proto3')
 )
 
 
@@ -72,7 +72,7 @@ _PERSON_PHONENUMBER = _descriptor.Descriptor(
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='type', full_name='tutorial.v1beta1.Person.PhoneNumber.type', index=1,
-      number=2, type=14, cpp_type=8, label=1,
+      number=3, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -122,30 +122,30 @@ _PERSON = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='married', full_name='tutorial.v1beta1.Person.married', index=3,
-      number=4, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
+      name='phones', full_name='tutorial.v1beta1.Person.phones', index=3,
+      number=6, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='home_address', full_name='tutorial.v1beta1.Person.home_address', index=4,
-      number=9, type=9, cpp_type=9, label=1,
+      number=7, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='company_address', full_name='tutorial.v1beta1.Person.company_address', index=5,
-      number=10, type=9, cpp_type=9, label=1,
+      number=8, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='phones', full_name='tutorial.v1beta1.Person.phones', index=6,
-      number=6, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
+      name='married', full_name='tutorial.v1beta1.Person.married', index=6,
+      number=9, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -185,7 +185,7 @@ _ADDRESSBOOK = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='state', full_name='tutorial.v1beta1.AddressBook.state', index=1,
+      name='deprecated', full_name='tutorial.v1beta1.AddressBook.deprecated', index=1,
       number=2, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
@@ -204,7 +204,7 @@ _ADDRESSBOOK = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=385,
-  serialized_end=455,
+  serialized_end=460,
 )
 
 _PERSON_PHONENUMBER.fields_by_name['type'].enum_type = _PERSON_PHONETYPEUPDATE
