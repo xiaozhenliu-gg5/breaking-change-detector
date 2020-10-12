@@ -1,8 +1,8 @@
 import unittest
 import test.testdata.original_pb2 as original_version
 import test.testdata.update_pb2 as update_version
-from src.comparator.fieldComparator import FieldComparator
-from src.findings.findingContainer import FindingContainer
+from src.comparator.field_comparator import FieldComparator
+from src.findings.finding_container import FindingContainer
 from src.findings.utils import FindingCategory
 
 class FieldComparatorTest(unittest.TestCase):

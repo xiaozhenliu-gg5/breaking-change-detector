@@ -30,7 +30,7 @@ The comparators in each level are in the `src/comparator` folder, for example: `
 A single unit test can be run by this command: 
 
 ```sh
-python -m unittest test.comparator.test_enunComparator
+python -m unittest test.comparator.test_enun_comparator
 ```
 
 All unit tests can be run by this command: 

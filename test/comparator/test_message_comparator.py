@@ -1,8 +1,8 @@
 import unittest
 import test.testdata.original_pb2 as original_version
 import test.testdata.update_pb2 as update_version
-from src.comparator.messageComparator import DescriptorComparator
-from src.findings.findingContainer import FindingContainer
+from src.comparator.message_comparator import DescriptorComparator
+from src.findings.finding_container import FindingContainer
 from src.findings.utils import FindingCategory
 
 class DescriptorComparatorTest(unittest.TestCase):

@@ -1,8 +1,8 @@
 import unittest
 import test.testdata.original_pb2 as original_version
 
-from src.comparator.enumValueComparator import EnumValueComparator
-from src.findings.findingContainer import FindingContainer
+from src.comparator.enum_value_comparator import EnumValueComparator
+from src.findings.finding_container import FindingContainer
 from src.findings.utils import FindingCategory
 
 class EnumValueComparatorTest(unittest.TestCase):
@@ -15,26 +15,26 @@ class EnumValueComparatorTest(unittest.TestCase):
         FindingContainer.reset()
 
     def test_enumValueRemoval(self):
-        comparator = EnumValueComparator(self.enumValue_mobile, None).compare()
+        EnumValueComparator(self.enumValue_mobile, None).compare()
         finding = FindingContainer.getAllFindings()[0]
         self.assertEqual(finding.message, 'An EnumValue MOBILE is removed')
         self.assertEqual(finding.category.name, 'ENUM_VALUE_REMOVAL')
 
 
     def test_enumValueAddition(self):
-        comparator = EnumValueComparator(None, self.enumValue_home).compare()
+        EnumValueComparator(None, self.enumValue_home).compare()
         finding = FindingContainer.getAllFindings()[0]
         self.assertEqual(finding.message, 'A new EnumValue HOME is added.')
         self.assertEqual(finding.category.name, 'ENUM_VALUE_ADDITION')
 
     def test_enumValueNameChange(self):
-        comparator = EnumValueComparator(self.enumValue_mobile, self.enumValue_home).compare()
+        EnumValueComparator(self.enumValue_mobile, self.enumValue_home).compare()
         finding = FindingContainer.getAllFindings()[0]
         self.assertEqual(finding.message, 'Name of the EnumValue is changed, the original is MOBILE, but the updated is HOME')
         self.assertEqual(finding.category.name, 'ENUM_VALUE_NAME_CHANGE')
 
     def test_noApiChange(self):
-        comparator = EnumValueComparator(self.enumValue_mobile, self.enumValue_mobile).compare()
+        EnumValueComparator(self.enumValue_mobile, self.enumValue_mobile).compare()
         self.assertEqual(len(FindingContainer.getAllFindings()), 0)
 
 if __name__ == '__main__':

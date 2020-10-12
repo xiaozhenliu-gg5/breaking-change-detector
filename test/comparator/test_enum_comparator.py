@@ -1,8 +1,8 @@
 import unittest
 import test.testdata.original_pb2 as original_version
 import test.testdata.update_pb2 as update_version
-from src.comparator.enumComparator import EnumComparator
-from src.findings.findingContainer import FindingContainer
+from src.comparator.enum_comparator import EnumComparator
+from src.findings.finding_container import FindingContainer
 from src.findings.utils import FindingCategory
 
 class EnumComparatorTest(unittest.TestCase):
@@ -15,25 +15,25 @@ class EnumComparatorTest(unittest.TestCase):
         FindingContainer.reset()
 
     def test_enumRemoval(self):
-        comparator = EnumComparator(self.enum_original, None).compare()
+        EnumComparator(self.enum_original, None).compare()
         finding = FindingContainer.getAllFindings()[0]
         self.assertEqual(finding.message, 'An Enum PhoneType is removed')
         self.assertEqual(finding.category.name, 'ENUM_REMOVAL')
 
     def test_enumAddition(self):
-        comparator = EnumComparator(None, self.enum_update).compare()
+        EnumComparator(None, self.enum_update).compare()
         finding = FindingContainer.getAllFindings()[0]
         self.assertEqual(finding.message, 'A new Enum PhoneTypeUpdate is added.')
         self.assertEqual(finding.category.name, 'ENUM_ADDITION')
     
     def test_enumNameChange(self):
-        comparator = EnumComparator(self.enum_original, self.enum_update).compare()
+        EnumComparator(self.enum_original, self.enum_update).compare()
         finding = FindingContainer.getAllFindings()[0]
         self.assertEqual(finding.message, 'Name of the Enum is changed, the original is PhoneType, but the updated is PhoneTypeUpdate')
         self.assertEqual(finding.category.name, 'ENUM_NAME_CHANGE')
             
     def test_noApiChange(self):
-        comparator = EnumComparator(self.enum_update, self.enum_update).compare()
+        EnumComparator(self.enum_update, self.enum_update).compare()
         self.assertEqual(len(FindingContainer.getAllFindings()), 0)
 
 if __name__ == '__main__':

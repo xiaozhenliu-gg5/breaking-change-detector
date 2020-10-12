@@ -3,7 +3,7 @@ from src.findings.utils import Finding
 from src.findings.utils import FindingCategory
 
 class FindingContainer:
-    _FINDINGS = []
+    _finding_results = []
 
     @classmethod
     def addFinding (
@@ -13,19 +13,19 @@ class FindingContainer:
         message: str,
         actionable: bool,
         extra_info = None):
-        cls._FINDINGS.append(Finding(category, location, message, actionable, extra_info))
+        cls._finding_results.append(Finding(category, location, message, actionable, extra_info))
 
     @classmethod
     def getAllFindings (cls):
-        return cls._FINDINGS
+        return cls._finding_results
     
     @classmethod
     def toJson(cls):
         findingDictArr = []
-        for finding in cls._FINDINGS:
+        for finding in cls._finding_results:
             findingDictArr.append(finding.toDict())
         return json.dumps(findingDictArr)
     
     @classmethod
     def reset(cls):
-        cls._FINDINGS = []
+        cls._finding_results = []

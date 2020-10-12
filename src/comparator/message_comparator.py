@@ -1,6 +1,6 @@
 from google.protobuf.descriptor import Descriptor
-from src.comparator.fieldComparator import FieldComparator
-from src.findings.findingContainer import FindingContainer
+from src.comparator.field_comparator import FieldComparator
+from src.findings.finding_container import FindingContainer
 from src.findings.utils import FindingCategory
 
 class DescriptorComparator:
@@ -28,14 +28,14 @@ class DescriptorComparator:
 
         # 3. Check breaking changes in each fields. Note: Fields are identified by number, not by name.
         # Descriptor.fields_by_number (dict int -> FieldDescriptor) indexed by number.
-        if (message_original.fields_by_number or message_update.fields_by_number):
+        if message_original.fields_by_number or message_update.fields_by_number:
             self._compareNestedFields(message_original.fields_by_number, message_update.fields_by_number)
         
         # 4. Check breaking changes in nested message.
         # Descriptor.nested_types_by_name (dict str -> Descriptor) indexed by name.
         # Recursively call _compare for nested message type comparison.
         if (message_original.nested_types_by_name or message_update.nested_types_by_name):
-            self._compareNestedMessage(message_original.nested_types_by_name, message_update.nested_types_by_name)
+            self._compareNestedMessages(message_original.nested_types_by_name, message_update.nested_types_by_name)
 
         # 5. TODO(xiaozhenliu): check `google.api.resource` annotation.     
 
@@ -51,7 +51,7 @@ class DescriptorComparator:
         for fieldNumber in fieldsIntersaction:
             FieldComparator(fieldsDict_original[fieldNumber], fieldsDict_update[fieldNumber]).compare()
     
-    def _compareNestedMessage(self, nestedMsgDict_original, nestedMsgDict_update):
+    def _compareNestedMessages(self, nestedMsgDict_original, nestedMsgDict_update):
         msgUnique_original = list(set(nestedMsgDict_original.keys()) - set(nestedMsgDict_update.keys()))
         msgUnique_update = list(set(nestedMsgDict_update.keys()) - set(nestedMsgDict_original.keys()))
         msgIntersaction = list(set(nestedMsgDict_original.keys()) & set(nestedMsgDict_update.keys()))
