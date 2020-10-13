@@ -33,43 +33,43 @@ class ServiceComparator:
 
 
     def _compareRpcMethods(self, service_original, service_update):
-        methods_names_original = service_original.methods_by_name.keys()
-        methods_names_update = service_update.methods_by_name.keys()
+        methods_original = {x.name: x for x in service_original.method} 
+        methods_update = {x.name: x for x in service_update.method} 
         # 6.1 An RPC method is removed.
-        for name in list(set(methods_names_original) - set(methods_names_update)):
+        for name in list(set(methods_original.keys()) - set(methods_update.keys())):
             msg = 'An rpc method {} is removed'.format(name)
             FindingContainer.addFinding(FindingCategory.METHOD_REMOVAL, "", msg, True)
         # 6.2 An RPC method is added.
-        for name in list(set(methods_names_update) - set(methods_names_original)):
+        for name in list(set(methods_original.keys()) - set(methods_update.keys())):
             msg = 'An rpc method {} is added'.format(name)
             FindingContainer.addFinding(FindingCategory.METHOD_ADDTION, "", msg, False)
-        for name in list(set(methods_names_original) & set(methods_names_update)):
-            method_original = service_original.methods_by_name[name]
-            method_udpate = service_update.methods_by_name[name]
+        for name in list(set(methods_original.keys()) & set(methods_update.keys())):
+            method_original = methods_original[name]
+            method_update = methods_update[name]
             # 6.3 The request type of an RPC method is changed.
-            if method_original.input_type.name != method_udpate.input_type.name:
+            if method_original.input_type.name != method_update.input_type.name:
                 msg = 'Input type of method {} is changed from {} to {}'.format(
                     name,
                     method_original.input_type.name,
-                    method_udpate.input_type.name)
+                    method_update.input_type.name)
                 FindingContainer.addFinding(FindingCategory.METHOD_INPUT_TYPE_CHANGE, "", msg, True)
             # 6.4 The request type of an RPC method is changed.
-            if method_original.output_type.name != method_udpate.output_type.name:
+            if method_original.output_type.name != method_update.output_type.name:
                 msg = 'Output type of method {} is changed from {} to {}'.format(
                     name,
                     method_original.output_type.name,
-                    method_udpate.output_type.name)
+                    method_update.output_type.name)
                 FindingContainer.addFinding(FindingCategory.METHOD_RESPONSE_TYPE_CHANGE, "", msg, True)
             # 6.5 The request streaming state of an RPC method is changed.
-            if method_original.client_streaming != method_udpate.client_streaming:
+            if method_original.client_streaming != method_update.client_streaming:
                 msg = 'The request streaming type of method {} is changed'.format(name)
                 FindingContainer.addFinding(FindingCategory.METHOD_CLIENT_STREAMING_CHANGE, "", msg, True)
             # 6.6 The response streaming state of an RPC method is changed.
-            if method_original.server_streaming != method_udpate.server_streaming:
+            if method_original.server_streaming != method_update.server_streaming:
                 msg = 'The response streaming type of method {} is changed'.format(name)
                 FindingContainer.addFinding(FindingCategory.METHOD_SERVER_STREAMING_CHANGE, "", msg, True)
             # 6.7 The paginated response of an RPC method is changed.
-            if self._isPaginatedResponse(method_original) != self._isPaginatedResponse(method_udpate):
+            if self._isPaginatedResponse(method_original) != self._isPaginatedResponse(method_update):
                 msg = 'The paginated response of method {} is changed'.format(name)
                 FindingContainer.addFinding(FindingCategory.METHOD_PAGINATED_RESPONSE_CHANGE, "", msg, True)
 
