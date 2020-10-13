@@ -1,4 +1,4 @@
-from google.protobuf.descriptor import EnumDescriptor
+from google.protobuf.descriptor_pb2 import EnumDescriptorProto
 from src.comparator.enum_value_comparator import EnumValueComparator
 from src.findings.finding_container import FindingContainer
 from src.findings.utils import FindingCategory
@@ -6,8 +6,8 @@ from src.findings.utils import FindingCategory
 class EnumComparator:
     def __init__ (
         self, 
-        enum_original: EnumDescriptor, 
-        enum_update: EnumDescriptor):
+        enum_original: EnumDescriptorProto, 
+        enum_update: EnumDescriptorProto):
             self.enum_original = enum_original
             self.enum_update = enum_update
 

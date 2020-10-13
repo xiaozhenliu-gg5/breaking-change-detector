@@ -1,4 +1,4 @@
-from google.protobuf.descriptor import Descriptor
+from google.protobuf.descriptor_pb2 import DescriptorProto
 from src.comparator.field_comparator import FieldComparator
 from src.findings.finding_container import FindingContainer
 from src.findings.utils import FindingCategory
@@ -6,8 +6,8 @@ from src.findings.utils import FindingCategory
 class DescriptorComparator:
     def __init__ (
         self, 
-        message_original: Descriptor, 
-        message_update: Descriptor):
+        message_original: DescriptorProto, 
+        message_update: DescriptorProto):
             self.message_original = message_original
             self.message_update = message_update
 
