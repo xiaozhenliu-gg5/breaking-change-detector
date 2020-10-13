@@ -14,25 +14,25 @@ class EnumComparatorTest(unittest.TestCase):
     def tearDown(self):
         FindingContainer.reset()
 
-    def test_enumRemoval(self):
+    def enumRemoval(self):
         EnumComparator(self.enum_original, None).compare()
         finding = FindingContainer.getAllFindings()[0]
         self.assertEqual(finding.message, 'An Enum PhoneType is removed')
         self.assertEqual(finding.category.name, 'ENUM_REMOVAL')
 
-    def test_enumAddition(self):
+    def enumAddition(self):
         EnumComparator(None, self.enum_update).compare()
         finding = FindingContainer.getAllFindings()[0]
         self.assertEqual(finding.message, 'A new Enum PhoneTypeUpdate is added.')
         self.assertEqual(finding.category.name, 'ENUM_ADDITION')
     
-    def test_enumNameChange(self):
+    def enumNameChange(self):
         EnumComparator(self.enum_original, self.enum_update).compare()
         finding = FindingContainer.getAllFindings()[0]
         self.assertEqual(finding.message, 'Name of the Enum is changed, the original is PhoneType, but the updated is PhoneTypeUpdate')
         self.assertEqual(finding.category.name, 'ENUM_NAME_CHANGE')
             
-    def test_noApiChange(self):
+    def oApiChange(self):
         EnumComparator(self.enum_update, self.enum_update).compare()
         self.assertEqual(len(FindingContainer.getAllFindings()), 0)
 
